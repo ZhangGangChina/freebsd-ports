@@ -33,7 +33,7 @@ USE_LDCONFIG=	yes
 LDFLAGS+=	-lboost_program_options -lboost_system
 MAKE_ARGS+=	--config=force system_asio=0 deterministic_tests=1 -j 4
 
-PLIST_FILES=	lib/libgalera_smm.so
+PLIST_FILES=	lib/libgalera_smm.so bin/garbd
 
 OPTIONS_DEFINE=	DEBUG
 
@@ -46,5 +46,7 @@ MAKE_ARGS+=	debug=3
 do-install:
 	${INSTALL_LIB} ${WRKDIR}/${DISTNAME}/libgalera_smm.so \
 		${STAGEDIR}${PREFIX}/lib/
+	${INSTALL_PROGRAM} ${WRKDIR}/${DISTNAME}/garb/garbd \
+		${STAGEDIR}${PREFIX}/bin/
 
 .include <bsd.port.post.mk>
