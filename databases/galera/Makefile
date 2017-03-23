@@ -28,6 +28,8 @@ USE_LDCONFIG=	yes
 LDFLAGS+=	-lboost_program_options -lboost_system
 MAKE_ARGS+=	--config=force system_asio=0 deterministic_tests=1 -j 4
 
+USE_RC_SUBR=	garb.sh
+
 PLIST_FILES=	lib/libgalera_smm.so bin/garbd
 
 OPTIONS_DEFINE=	DEBUG

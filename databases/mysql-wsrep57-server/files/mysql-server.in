@@ -57,8 +57,8 @@ command_args="-c -f %%PREFIX%%/bin/mysqld_safe ${mysql_extra} --basedir=%%PREFIX
 procname="%%PREFIX%%/libexec/mysqld"
 start_precmd="${name}_prestart"
 start_postcmd="${name}_poststart"
-mysql_install_db="%%PREFIX%%/bin/mysql_install_db"
-mysql_install_db_args="${mysql_extra} --basedir=%%PREFIX%% --datadir=${mysql_dbdir} --mysqld-file=${procname} --user=${mysql_user}"
+mysql_install_db="${procname}"
+mysql_install_db_args="${mysql_extra} --basedir=/usr/local --datadir=${mysql_dbdir} --user=${mysql_user} --initialize"
 service_startup_timeout=900
 startup_sleep=1
 sst_progress_file=${mysql_dbdir}/sst_in_progress
