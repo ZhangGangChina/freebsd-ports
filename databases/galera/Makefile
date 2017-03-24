@@ -20,18 +20,15 @@ USES=		execinfo python:build scons shebangfix ssl
 
 .include <bsd.port.options.mk>
 
-.if ${OSVERSION} < 1000000
-USE_GCC=	4.8+
-GCC_LIBS=	"${LOCALBASE}/lib/${_GCC_BUILD_DEPENDS}"
-.else
-CXX=            clang
-LDFLAGS+=       -lc++
-.endif
+CXX=            clang++
+CC=             clang
 
 USE_LDCONFIG=	yes
 
 LDFLAGS+=	-lboost_program_options -lboost_system
 MAKE_ARGS+=	--config=force system_asio=0 deterministic_tests=1 -j 4
+
+USE_RC_SUBR=	garb.sh
 
 PLIST_FILES=	lib/libgalera_smm.so bin/garbd
 
